@@ -9,4 +9,4 @@ RAPIDAPI_KEY=<Rapidapi key>
 RAPIDAPI_HOST=<Rapidapi host value>
 URL=<URL of the Microsoft API>
   
-##This is a simple CLI app to make my life easier since I translate many variable names or sentences## 
+## This is a simple CLI app to make my life easier since I translate many variable names or sentences
