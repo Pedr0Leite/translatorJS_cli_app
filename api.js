@@ -1,42 +1,58 @@
 var axios = require("axios").default;
 const dotenv = require("dotenv").config();
 
-var rapidapi_key = process.env.RAPIDAPI_KEY;
+const rapidapi_key = process.env.RAPIDAPI_KEY;
+const rapidapi_host = process.env.RAPIDAPI_HOST;
+const URL = process.env.URL;
 
+async function detectLanguage(text) {
+let result;
 //Detect Language
-var options1 = {
+var detectLanguage = {
   method: 'POST',
-  url: 'https://google-translate1.p.rapidapi.com/language/translate/v2/detect',
+  url: URL + '/Detect',
+  params: {'api-version': '3.0'},
   headers: {
-    'content-type': 'application/x-www-form-urlencoded',
-    'accept-encoding': 'application/gzip',
-    'x-rapidapi-host': 'google-translate1.p.rapidapi.com',
+    'content-type': 'application/json',
+    'x-rapidapi-host': rapidapi_host,
     'x-rapidapi-key': rapidapi_key
   },
-  data: {q: 'English is hard, but detectably so'}
+  data: [{Text: text}]
 };
 
-// axios.request(options1).then(function (response) {
-// 	console.log(response.data);
-// }).catch(function (error) {
-// 	console.error(error);
-// });
 
-//translate
-var options2 = {
-  method: 'POST',
-  url: 'https://google-translate1.p.rapidapi.com/language/translate/v2',
-  headers: {
-    'content-type': 'application/x-www-form-urlencoded',
-    'accept-encoding': 'application/gzip',
-    'x-rapidapi-host': 'google-translate1.p.rapidapi.com',
-    'x-rapidapi-key': rapidapi_key
-  },
-  data: {source: 'en', target: 'es', q: 'world!'}
-};
-
-axios.request(options2).then(function (response) {
-	console.log(response.data.translations);
+await axios.request(detectLanguage).then(function (response) {
+  result = response.data[0].translations[0].language;
 }).catch(function (error) {
-	console.error(error);
+  console.error(error);
 });
+
+return result;
+
+};
+
+async function translateText(text, language) {
+  let result;
+//translate one word or sentence
+var translateText = {
+  method: 'POST',
+  url: URL + '/translate',
+  params: {to: language, 'api-version': '3.0', profanityAction: 'NoAction', textType: 'plain'},
+  headers: {
+    'content-type': 'application/json',
+    'x-rapidapi-host': rapidapi_host,
+    'x-rapidapi-key': rapidapi_key
+  },
+  data: [{Text: text}]
+};
+
+await axios.request(translateText).then(function (response) {
+  result = response.data[0].translations[0].text;
+}).catch(function (error) {
+  console.error(error);
+});
+return result;
+};
+
+
+module.exports = { detectLanguage, translateText };

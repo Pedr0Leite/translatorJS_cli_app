@@ -1,6 +1,14 @@
 #!usr/bin/node
 const yargs = require("yargs");
 
+const text = 'I would really like to drive your car around the block a few times.';
+const lang = 'it';
+
+(async () =>{
+  const getTranslation = require("./api");
+  var test = await getTranslation.translateText(text, lang).then((response) => console.log(response));
+})();
+
 const options = yargs
   .usage("Usage: -w <word> -l <language>")
   .option("w", {
