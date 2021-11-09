@@ -1,9 +1,7 @@
 #!usr/bin/node
 const yargs = require("yargs");
-// (async () =>{
-//   const getTranslation = require("./api");
-//   var test = await getTranslation.translateText(text, lang).then((response) => console.log(response));
-// })();
+// const controllers = require("./controllers/controllers");
+const api = require("./controllers/api");
 
 const options = yargs
   .usage("Usage: -t <text>")
@@ -29,35 +27,34 @@ const options = yargs
   }
   ).argv;
 
-  //Always has to be the text argument first
+  //Arguments
   const firstArg = process.argv[2];
-  const text = process.argv[3];
-
-  //Always has to come after, can be -l or -d
   const secondArg = process.argv[4];
   
-  if(secondArg == '-l'){
-    const language = process.argv[5].split(',');
-    console.log('language :', language);
-  }
-
-
-  if(firstArg == "-w"){
+  if(firstArg == '-d'){
+    
     (async () =>{
-    const getTranslation = require("./controllers/api");
-    const result = await getTranslation.translateText(text, language).then((response) => console.log(response));
+    const text = process.argv[3];
+    console.log('text :', text);
+    const result = await api.detectLanguage(text).then((response) => console.log(response));
+    })();
+    
+  } else if((firstArg == "-t" && secondArg == '-l') || (firstArg == "-l" && secondArg == '-t')){
+    const text = firstArg == '-t' ? process.argv[3] : process.argv[5];
+    const language = firstArg == '-l' ? process.argv[3].split(',') : process.argv[5].split(',');
+
+    (async () =>{
+    const result = await api.translateText(text, language).then((response) => console.log(response));
     })();
 
-  }else if(firstArg == "-s"){
-
-  }else if(firstArg == "-d"){
-
-  }  else {
+  } else if(firstArg == undefined || (firstArg == "-l" && secondArg == undefined) || (firstArg == undefined && secondArg == "-l") || (firstArg == "-t" && secondArg == undefined) || (firstArg == undefined && secondArg == "-t")){
+    console.log('Please, use the argument -t and -l together');
+  } else {
   console.log(
     "\n***************************************" +
       "\n*  Welcome to Translator CLI app!   *" +
-      "\n* -w  <word>                        *" +
-      "\n* -s  <sentence> (for help, --help) *" +
+      "\n* -w  <word>  (for help, --help)    *" +
+      "\n* -d  <detect language>             *" +
       "\n* -l  <language>                    *" +
       "\n*************************************"
       );

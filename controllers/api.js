@@ -22,7 +22,8 @@ var detectLanguage = {
 
 
 await axios.request(detectLanguage).then(function (response) {
-  result = response.data[0].translations[0].language;
+  // result = response.data[0].translations[0].language;
+  console.log('response.data :', response.data);
 }).catch(function (error) {
   console.error(error);
 });
