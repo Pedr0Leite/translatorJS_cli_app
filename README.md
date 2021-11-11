@@ -7,6 +7,7 @@ Please, use the following commands to use the app.
 
 URL of the Microsoft Translator Text:
 https://rapidapi.com/microsoft-azure-org-microsoft-cognitive-services/api/microsoft-translator-text/
+<br>
 ![image](https://user-images.githubusercontent.com/48599344/140662618-f67a71fa-2720-4adf-a340-a661f6ccde11.png)
 
 Create a .env file with the following variables:
