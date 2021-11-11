@@ -5,6 +5,9 @@ Please, use the following commands to use the app.
 - -d -> detect language of word or sentence
 - -l -> language
 
+If you don't have a RapidAPI account, you need to create one to generate the .env variables info.
+If you have, just go to the Microsoft Translator Text URL.
+
 URL of the Microsoft Translator Text:
 https://rapidapi.com/microsoft-azure-org-microsoft-cognitive-services/api/microsoft-translator-text/
 <br>
