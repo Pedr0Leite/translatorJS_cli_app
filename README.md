@@ -1,5 +1,8 @@
 # translatorJS_cli_app
 Using Microsoft Translator Text API to do translation for a word(s) or sentence(s)
+<br>-w  <word>
+<br>-d  <detect language>
+<br>-l  <language>
 
 URL of the Microsoft Translator Text:
 https://rapidapi.com/microsoft-azure-org-microsoft-cognitive-services/api/microsoft-translator-text/
