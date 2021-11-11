@@ -7,7 +7,10 @@ https://rapidapi.com/microsoft-azure-org-microsoft-cognitive-services/api/micros
 
 Create a .env file with the following variables:
 <br>RAPIDAPI_KEY=<Rapidapi key>
-RAPIDAPI_HOST=<Rapidapi host value>
-URL=<URL of the Microsoft API>
+<br>RAPIDAPI_HOST=<Rapidapi host value>
+<br>URL=<URL of the Microsoft API>
   
 ## This is a simple CLI app to make my life easier since I translate many variable names or sentences
+
+##Example of usage:
+  ![imagem](https://user-images.githubusercontent.com/48599344/141295574-4ebe2811-2db3-4834-90c3-7e8617175b06.png)
