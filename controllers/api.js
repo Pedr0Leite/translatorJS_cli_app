@@ -1,57 +1,31 @@
+// process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+
 var axios = require("axios").default;
-const dotenv = require("dotenv").config();
+const axiosConfig = require("./axios.config").config;
+const axiosRequest = require("./axios.request").axiosRequest;
 
-const rapidapi_key = process.env.RAPIDAPI_KEY;
-const rapidapi_host = process.env.RAPIDAPI_HOST;
-const URL = process.env.URL;
-
+//Detect
 async function detectLanguage(text) {
 let result;
-//Detect Language
-var detectLanguage = {
-  method: 'POST',
-  url: URL + '/Detect',
-  params: {'api-version': '3.0'},
-  headers: {
-    'content-type': 'application/json',
-    'x-rapidapi-host': rapidapi_host,
-    'x-rapidapi-key': rapidapi_key
-  },
-  data: [{Text: text}]
-};
+let directory = 'Detect';
+let type = 'Detect';
+let config = axiosConfig(directory, text);
 
-
-await axios.request(detectLanguage).then(function (response) {
-  // result = response.data[0].translations[0].language;
-  console.log('response.data :', response.data);
-}).catch(function (error) {
-  console.error(error);
-});
+result = await axiosRequest(config, type);
 
 return result;
-
 };
 
+//Translate
 async function translateText(text, language) {
-  let result;
-//translate one word or sentence
-var translateText = {
-  method: 'POST',
-  url: URL + '/translate',
-  params: {to: language, 'api-version': '3.0', profanityAction: 'NoAction', textType: 'plain'},
-  headers: {
-    'content-type': 'application/json',
-    'x-rapidapi-host': rapidapi_host,
-    'x-rapidapi-key': rapidapi_key
-  },
-  data: [{Text: text}]
-};
-
-await axios.request(translateText).then(function (response) {
-  result = response.data[0].translations[0].text;
-}).catch(function (error) {
-  console.error(error);
-});
+  let result = {};
+  let directory = 'translate';
+  let type = 'translate';
+  
+  for (let i = 0; i < language.length; i++) {
+    let config = axiosConfig(directory, text, language[i]);
+    result[language[i]] = await axiosRequest(config, type);
+  }
 return result;
 };
 

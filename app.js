@@ -1,6 +1,5 @@
 #!usr/bin/node
 const yargs = require("yargs");
-// const controllers = require("./controllers/controllers");
 const api = require("./controllers/api");
 
 const options = yargs
@@ -35,11 +34,11 @@ const options = yargs
     
     (async () =>{
     const text = process.argv[3];
-    console.log('text :', text);
-    const result = await api.detectLanguage(text).then((response) => console.log(response));
+    const result = await api.detectLanguage(text).then((response) => console.log('That word/sentence is in the following language: ' + response));
     })();
     
   } else if((firstArg == "-t" && secondArg == '-l') || (firstArg == "-l" && secondArg == '-t')){
+
     const text = firstArg == '-t' ? process.argv[3] : process.argv[5];
     const language = firstArg == '-l' ? process.argv[3].split(',') : process.argv[5].split(',');
 
@@ -48,8 +47,11 @@ const options = yargs
     })();
 
   } else if(firstArg == undefined || (firstArg == "-l" && secondArg == undefined) || (firstArg == undefined && secondArg == "-l") || (firstArg == "-t" && secondArg == undefined) || (firstArg == undefined && secondArg == "-t")){
+    
     console.log('Please, use the argument -t and -l together');
+
   } else {
+    
   console.log(
     "\n***************************************" +
       "\n*  Welcome to Translator CLI app!   *" +
