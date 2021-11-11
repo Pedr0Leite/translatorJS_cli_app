@@ -6,7 +6,7 @@ https://rapidapi.com/microsoft-azure-org-microsoft-cognitive-services/api/micros
 ![image](https://user-images.githubusercontent.com/48599344/140662618-f67a71fa-2720-4adf-a340-a661f6ccde11.png)
 
 Create a .env file with the following variables:
-RAPIDAPI_KEY=<Rapidapi key>
+<br>RAPIDAPI_KEY=<Rapidapi key>
 RAPIDAPI_HOST=<Rapidapi host value>
 URL=<URL of the Microsoft API>
   
