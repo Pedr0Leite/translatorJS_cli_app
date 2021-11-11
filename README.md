@@ -19,6 +19,8 @@ Create a .env file with the following variables:
 <br>URL=<URL of the Microsoft API>
   
 ## This is a simple CLI app to make my life easier since I translate many variable names or sentences
+  
+##Don't forget to run the command 'npm i' to install all dependencies to run the app
 
 ##Example of usage:
   <br>
