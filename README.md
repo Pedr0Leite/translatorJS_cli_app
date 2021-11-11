@@ -23,6 +23,6 @@ Create a .env file with the following variables:
 ### Don't forget to run the command 'npm i' to install all dependencies to run the app
 
 ### Example of usage:
-  <br>  
+  
   ![imagem](https://user-images.githubusercontent.com/48599344/141295805-12963d3c-024a-4461-918a-0a54a67e5e22.png)
 
