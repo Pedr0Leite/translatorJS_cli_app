@@ -10,31 +10,28 @@ const Agent = new https.Agent({
 });
 
 function config(directory, text, language) {
-    var config = {
-        method: "POST",
-        url: URL + "/" + directory,
-        // params: {'api-version': '3.0'},
-        httpsAgent: Agent,
-        headers: {
-            "content-type": "application/json",
-            "x-rapidapi-host": rapidapi_host,
-            "x-rapidapi-key": rapidapi_key,
-        },
-        data: [{ Text: text }],
+  var config = {
+    method: "POST",
+    url: URL + "/" + directory,
+    httpsAgent: Agent,
+    headers: {
+      "content-type": "application/json",
+      "x-rapidapi-host": rapidapi_host,
+      "x-rapidapi-key": rapidapi_key,
+    },
+    data: [{ Text: text }],
   };
-  
 
-  (language == "" || language == undefined)
-  ? (config["params"] = { "api-version": "3.0" })
-  : (config["params"] = {
+  language == "" || language == undefined
+    ? (config["params"] = { "api-version": "3.0" })
+    : (config["params"] = {
         to: language,
         "api-version": "3.0",
         profanityAction: "NoAction",
         textType: "plain",
       });
-      
-      return config;
-    }
 
-    // console.log('config :', config('test', 'text'));
-  module.exports = { config };
+  return config;
+}
+
+module.exports = { config };

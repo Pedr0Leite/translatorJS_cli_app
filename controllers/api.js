@@ -6,28 +6,27 @@ const axiosRequest = require("./axios.request").axiosRequest;
 
 //Detect
 async function detectLanguage(text) {
-let result;
-let directory = 'Detect';
-let type = 'Detect';
-let config = axiosConfig(directory, text);
+  let result;
+  let directory = "Detect";
+  let type = "Detect";
+  let config = axiosConfig(directory, text);
 
-result = await axiosRequest(config, type);
+  result = await axiosRequest(config, type);
 
-return result;
-};
+  return result;
+}
 
 //Translate
 async function translateText(text, language) {
   let result = {};
-  let directory = 'translate';
-  let type = 'translate';
-  
+  let directory = "translate";
+  let type = "translate";
+
   for (let i = 0; i < language.length; i++) {
     let config = axiosConfig(directory, text, language[i]);
     result[language[i]] = await axiosRequest(config, type);
   }
-return result;
-};
-
+  return result;
+}
 
 module.exports = { detectLanguage, translateText };
