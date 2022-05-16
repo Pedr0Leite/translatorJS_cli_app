@@ -1,29 +1,29 @@
 #!usr/bin/node
-const yargs = require("yargs");
+// const yargs = require("yargs");
 const api = require("./controllers/api");
 
-const options = yargs
-  .usage("Usage: -t <text>")
-  .option("t", {
-    alias: "text",
-    describe: "text to be translated",
-    type: "string",
-    demandOption: false,
-  })
-  .usage("Usage: -l <language>")
-  .option("l", {
-    alias: "language",
-    describe: "language",
-    type: "string",
-    demandOption: false,
-  })
-  .usage("Usage: -d <detect>")
-  .option("d", {
-    alias: "detect",
-    describe: "detect language",
-    type: "string",
-    demandOption: false,
-  }).argv;
+// const options = yargs
+//   .usage("Usage: -t <text>")
+//   .option("t", {
+//     alias: "text",
+//     describe: "text to be translated",
+//     type: "string",
+//     demandOption: false,
+//   })
+//   .usage("Usage: -l <language>")
+//   .option("l", {
+//     alias: "language",
+//     describe: "language",
+//     type: "string",
+//     demandOption: false,
+//   })
+//   .usage("Usage: -d <detect>")
+//   .option("d", {
+//     alias: "detect",
+//     describe: "detect language",
+//     type: "string",
+//     demandOption: false,
+//   }).argv;
 
 //Arguments
 const firstArg = process.argv[2];
